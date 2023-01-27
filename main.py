@@ -1,5 +1,6 @@
 # Main window
 
+import sys
 import tkinter as tk
 from PIL import Image, ImageTk
 import pkg_utils_class_tkinter
@@ -10,6 +11,13 @@ bg = "#d5d7a0"
 # Init window Tkinter ---------------------------------------------------------
 
 window = tk.Tk()
+if sys.platform.startswith("linux"):
+    icon = tk.PhotoImage(file='images/icone.gif')
+    window.tk.call('wm', 'iconphoto', window._w, icon)
+
+elif sys.platform.startswith("win32"):
+    window.iconbitmap("images.icone.ico")
+
 window.title("Diy - Vap")
 window.geometry("516x601")
 window.resizable(0, 0)
@@ -168,6 +176,8 @@ def calcul():
         show_label_aroma.label_texte["text"] = str(entry_aroma.int_entry.get())
         show_label_base.label_texte["text"] = str(base)
 
+        entry_aroma.int_entry.set(0)
+
     elif entry_base.int_entry.get() > 0:
 
         aroma = entry_base.int_entry.get() * percent_aroma.get(
@@ -177,6 +187,8 @@ def calcul():
         show_quantity_desired.label_texte["text"] = str(quantite_total)
         show_label_aroma.label_texte["text"] = str(aroma)
         show_label_base.label_texte["text"] = str(entry_base.int_entry.get())
+
+        entry_base.int_entry.set(0)
 
 
 button = tk.Button(
