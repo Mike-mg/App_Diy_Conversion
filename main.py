@@ -36,7 +36,7 @@ selected_dosage.label_texte.config(width=35, padx=2, pady=2, bg="#c8a6cb")
 
 selected_dosage.label_grid(row=0, column=0, padx=(0, 0), pady=(0, 10))
 
-dosage_aroma = tk.Scale(
+percent_aroma = tk.Scale(
     frame_selected_dosage,
     digits=2,
     length=375,
@@ -50,7 +50,7 @@ dosage_aroma = tk.Scale(
     variable=0,
 )
 
-dosage_aroma.grid(row=1, column=0, padx=(0, 0), pady=(0, 0))
+percent_aroma.grid(row=1, column=0, padx=(0, 0), pady=(0, 0))
 
 # Quantity desired ------------------------------------------------------------
 
@@ -154,69 +154,35 @@ entry_base.enrty_grid(row=0, column=1, rowspan=2, padx=(25, 0), pady=(0, 0))
 
 # Button function -------------------------------------------------------------
 
-
-def reset_label():
-
-    show_quantity_desired.label_texte["text"] = 0
-    show_label_aroma.label_texte["text"] = 0
-    show_label_aroma.label_texte["text"] = 0
-
-
 def calcul():
 
-    if entry_base.int_entry.get() > 0:
+    percent_dosage = {"aroma": percent_aroma.get()}, {"base": 100}
 
-        reset_label()
+    if entry_aroma.int_entry.get() > 0:
 
-        quantity_aroma = entry_base.int_entry.get() * dosage_aroma.get() / 100
+        base = entry_aroma.int_entry.get(
+        ) * percent_dosage[1]["base"] // percent_dosage[0]["aroma"] # noqa
+        quantite_total = base + entry_aroma.int_entry.get()
 
-        show_quantity_desired.label_texte["text"] = str(
-            quantity_aroma + entry_base.int_entry.get()
-        )
-
-        show_label_aroma.label_texte["text"] = str(quantity_aroma)
-        show_label_base.label_texte["text"] = str(entry_base.int_entry.get())
-
-        entry_base.int_entry.set(0)
-
-    elif entry_quantity_desired.int_entry.get() > 0:
-
-        reset_label()
-
-        quantity_aroma = (
-            entry_quantity_desired.int_entry.get() * dosage_aroma.get() / 100
-        )
-
-        quantity_base = entry_quantity_desired.int_entry.get() - quantity_aroma
-
-        show_quantity_desired.label_texte["text"] = str(
-            entry_quantity_desired.int_entry.get()
-        )
-
-        show_label_aroma.label_texte["text"] = str(quantity_aroma)
-        show_label_base.label_texte["text"] = str(quantity_base)
-
-        entry_quantity_desired.int_entry.set(0)
-
-    elif entry_aroma.int_entry.get() > 0:
-
-        quantity_total = dosage_aroma.get() * entry_aroma.int_entry.get()
-        quantity_base = quantity_total - entry_aroma.int_entry.get()
-
-        show_quantity_desired.label_texte["text"] = str(quantity_total)
+        show_quantity_desired.label_texte["text"] = str(quantite_total)
         show_label_aroma.label_texte["text"] = str(entry_aroma.int_entry.get())
+        show_label_base.label_texte["text"] = str(base)
 
-        show_label_base.label_texte["text"] = str(
-            quantity_total - entry_aroma.int_entry.get()
-        )
+    elif entry_base.int_entry.get() > 0:
 
-        entry_aroma.int_entry.set(0)
+        aroma = entry_base.int_entry.get() * percent_aroma.get(
+        ) // percent_dosage[1]["base"]
+        quantite_total = entry_base.int_entry.get() + aroma
+
+        show_quantity_desired.label_texte["text"] = str(quantite_total)
+        show_label_aroma.label_texte["text"] = str(aroma)
+        show_label_base.label_texte["text"] = str(entry_base.int_entry.get())
 
 
 button = tk.Button(
     window, width=20, text="Valide", font=("arial, 10"), borderwidth=3,
-    command=calcul
-)
+    command=calcul)
+
 button.grid(row=4, column=0, padx=(0, 0), pady=(50, 0))
 
 # End Main window =============================================================
