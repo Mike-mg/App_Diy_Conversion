@@ -1,4 +1,4 @@
-# Function program
+# Function calcul of program
 
 from tkinter import messagebox as messagebox
 

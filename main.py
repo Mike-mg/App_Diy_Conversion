@@ -27,27 +27,27 @@ image = ImageTk.PhotoImage(Image.open("/home/mike/Images/background.jpeg"))
 image_label = tk.Label(image=image)
 image_label.place(x=0, y=0)
 
-# Frame and widgets selects dosage --------------------------------------------
+# # Frame and widgets selects dosage --------------------------------------------
 
-percent_dosage = pkg_widgets.FramesWidgets(window)
-percent_dosage.frame_dosage((50, 0), (50, 0))
-
-
-# Quantity desired ------------------------------------------------------------
-
-quantity_desired = pkg_widgets.FramesWidgets(window)
-quantity_desired.frame_quantity((50, 0), (25, 0))
+# percent_dosage = pkg_widgets.FramesWidgets(window)
+# percent_dosage.frame_dosage((50, 0), (50, 0))
 
 
-# Quantity of aroma -----------------------------------------------------------
+# # Quantity desired ------------------------------------------------------------
 
-quantity_aroma = pkg_widgets.FramesWidgets(window)
-quantity_aroma.frame_aroma((50, 0), (25, 0))
+# quantity_desired = pkg_widgets.FramesWidgets(window)
+# quantity_desired.frame_quantity((50, 0), (25, 0))
 
-# Quantity of base ------------------------------------------------------------
 
-quantity_base = pkg_widgets.FramesWidgets(window)
-quantity_base.frame_base((50, 0), (25, 0))
+# # Quantity of aroma -----------------------------------------------------------
+
+# quantity_aroma = pkg_widgets.FramesWidgets(window)
+# quantity_aroma.frame_aroma((50, 0), (25, 0))
+
+# # Quantity of base ------------------------------------------------------------
+
+# quantity_base = pkg_widgets.FramesWidgets(window)
+# quantity_base.frame_base((50, 0), (25, 0))
 
 # End Main window =============================================================
 
