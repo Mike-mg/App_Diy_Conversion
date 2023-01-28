@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pillow = "*"
+auto-py-to-exe = "*"
 
 [dev-packages]
 
