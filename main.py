@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import messagebox as messagebox
 from PIL import Image, ImageTk
 import pkg_utils_class_tkinter
+from pkg_functions_utils import calcul_by_quantity_desired
 
 bg = "#f28de2"
 
@@ -92,8 +93,14 @@ entry_quantity_desired.entry_textvariable.config(width=10, justify="center",
                                                  bg="white", relief="ridge",
                                                  bd=2)
 
-entry_quantity_desired.enrty_grid(row=0, column=1, rowspan=2, padx=(0, 15),
+entry_quantity_desired.enrty_grid(row=0, column=1, padx=(0, 15),
                                   pady=(0, 0))
+
+button = tk.Button(
+    frame_quantity_desired_main, text="Valide",
+    command=calcul_by_quantity_desired())
+
+button.grid(row=1, column=1, padx=(0, 0), pady=(0, 0))
 
 # Quantity of aroma -----------------------------------------------------------
 
@@ -189,25 +196,6 @@ def calcul():
                 entry_base.int_entry.get())
 
             entry_base.int_entry.set(0)
-
-        elif entry_quantity_desired.int_entry.get() > 0:
-
-            base = entry_quantity_desired.int_entry.get(
-            ) * percent_dosage[1]["base"] / (
-                percent_aroma.get() + percent_dosage[1]["base"])
-
-            base = round(base, 2)
-
-            aroma = base * percent_aroma.get() / percent_dosage[1]["base"]
-
-            aroma = round(aroma, 2)
-
-            show_quantity_desired.label_texte["text"] = str(
-                entry_quantity_desired.int_entry.get())
-            show_label_aroma.label_texte["text"] = str(aroma)
-            show_label_base.label_texte["text"] = str(base)
-
-            entry_quantity_desired.int_entry.set(0)
 
     except Exception:
         messagebox.showerror(
