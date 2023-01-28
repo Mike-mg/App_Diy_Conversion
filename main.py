@@ -17,10 +17,10 @@ if sys.platform.startswith("linux"):
     window.tk.call('wm', 'iconphoto', window._w, icon)
 
 elif sys.platform.startswith("win32"):
-    window.iconbitmap("images.icone.ico")
+    window.iconbitmap("images/icone.ico")
 
 window.title("Diy - Vap")
-window.geometry("525x650")
+window.geometry("480x625")
 window.resizable(0, 0)
 
 # Image background ------------------------------------------------------------
