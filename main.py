@@ -16,7 +16,7 @@ if sys.platform.startswith("linux"):
     window.tk.call('wm', 'iconphoto', window._w, icon)
 
 elif sys.platform.startswith("win32"):
-    window.iconbitmap("images.icone.ico")
+    window.iconbitmap("images/icone.ico")
 
 window.title("Diy - Vap")
 window.geometry("525x650")
