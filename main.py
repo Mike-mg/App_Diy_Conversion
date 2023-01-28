@@ -217,6 +217,7 @@ def calcul():
         entry_aroma.int_entry.set(0)
         entry_base.int_entry.set(0)
         entry_quantity_desired.int_entry.set(0)
+        percent_aroma.set(0)
 
 
 button = tk.Button(
