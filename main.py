@@ -1,6 +1,7 @@
 # Entry program
 
 import pkg_window_tkinter
+import pkg_functions_utils
 
 
 class Main:
@@ -8,6 +9,7 @@ class Main:
 
     def __init__(self) -> None:
         self.main_window = pkg_window_tkinter.MainWindowApp()
+        self.utils_functions = pkg_functions_utils.results_calculs()
 
 
 start_window = Main()

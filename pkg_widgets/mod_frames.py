@@ -1,7 +1,6 @@
 # Widgets frames
 
 import tkinter as tk
-# import pkg_utils_class_tkinter
 
 
 class FramesWidgets:
@@ -10,6 +9,8 @@ class FramesWidgets:
     def __init__(self, window) -> None:
         self.window = window
         self.bg = "#f28de2"
+        self.percent_dosage = 0
+        self.entry_quantity_desired = 0
 
     def frame_dosage(self) -> None:
         # Show frame percent dosage
@@ -18,19 +19,20 @@ class FramesWidgets:
             self.window, borderwidth=2, relief="raised", bg=self.bg, border=3
         )
 
-        frame_selected_dosage.grid(row=0, column=0, padx=(50, 0), pady=(50, 25))
+        frame_selected_dosage.grid(
+            row=0, column=0, padx=(50, 0), pady=(50, 25))
 
         label_selected_dosage = tk.Label(
             frame_selected_dosage, text="Selected dosage")
-        
+
         label_selected_dosage.grid(row=0, column=0, padx=(0, 0), pady=(0, 0))
 
-        percent_aroma = tk.Scale(frame_selected_dosage, digits=2, length=375,
-                                 from_=0, to=20, orient="horizontal",
-                                 bg=self.bg, troughcolor="white", 
-                                 font=("Arial", 14), fg="white", variable=0)
+        self.percent_dosage = tk.Scale(
+            frame_selected_dosage, digits=2, length=375, from_=0, to=20,
+            orient="horizontal", bg=self.bg, troughcolor="white",
+            font=("Arial", 14), fg="white", variable=0)
 
-        percent_aroma.grid(row=1, column=0)
+        self.percent_dosage.grid(row=1, column=0)
 
     def frame_quantity(self) -> None:
         # show frame quantity desired
@@ -39,11 +41,12 @@ class FramesWidgets:
             self.window, borderwidth=3, relief="raised", bg=self.bg
         )
 
-        frame_quantity_desired.grid(row=1, column=0, padx=(50, 0), pady=(0, 25))
+        frame_quantity_desired.grid(
+            row=1, column=0, padx=(50, 0), pady=(0, 25))
 
         label_quantity_desired = tk.Label(
             frame_quantity_desired, text="Quantity total")
-        
+
         label_quantity_desired.grid(row=0, column=0, padx=(0, 0), pady=(0, 0))
 
         label_quantity_desired.config(
@@ -62,12 +65,14 @@ class FramesWidgets:
         show_quantity_desired.grid(
             row=1, column=0, padx=(0, 0), pady=(0, 15))
 
-        entry_quantity_desired = tk.Entry(frame_quantity_desired, text=0)
+        self.entry_quantity_desired = tk.Entry(frame_quantity_desired, text=0)
 
-        entry_quantity_desired.config(
+        self.entry_quantity_desired.config(
             width=10, justify="center", bg="white", relief="ridge", bd=2)
 
-        entry_quantity_desired.grid(row=0, column=1, padx=(0, 15), pady=(0, 0))
+        self.entry_quantity_desired.grid(
+            row=0, column=1, padx=(0, 15), pady=(0, 0))
+
 
         # command_button_results_calculs = results_calculs()
 

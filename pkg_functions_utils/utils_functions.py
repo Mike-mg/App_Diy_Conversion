@@ -1,27 +1,33 @@
 # Function calcul of program
 
 from tkinter import messagebox as messagebox
+import pkg_widgets
 
-percent_dosage = {"aroma": main.percent_aroma.get()}, {"base": 100}
+
+
 
 
 class results_calculs:
+
     def __init__(self) -> None:
-        pass
+        self.functions_calculs = pkg_widgets.FramesWidgets()
+        self.dict_percent_aroma = {
+            "aroma": self.functions_calculs.percent_dosage.get()}, {
+            "base": 100}
 
-    def reset_variable(self):
-        # Reset variable type entry and percent_arome if error
+    # def reset_variable(self):
+    #     # Reset variable type entry and percent_arome if error
 
-        main.entry_aroma.int_entry.set(0)
-        main.entry_base.int_entry.set(0)
-        main.entry_quantity_desired.int_entry.set(0)
-        main.percent_aroma.set(0)
+    #     main.entry_aroma.int_entry.set(0)
+    #     main.entry_base.int_entry.set(0)
+    #     main.entry_quantity_desired.int_entry.set(0)
+    #     main.percent_aroma.set(0)
 
     def calcul_by_quantity_desired(self):
 
         try:
 
-            if main.entry_quantity_desired.int_entry.get() > 0:
+            if self.functions_calculs.entry_quantity_desired.get() > 0:
 
                 base = (
                     main.entry_quantity_desired.int_entry.get()
