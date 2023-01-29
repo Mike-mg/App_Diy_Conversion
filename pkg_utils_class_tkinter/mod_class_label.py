@@ -9,8 +9,7 @@ class LabelTextVariable:
     def __init__(self, window, int_label):
         self.int_label = tk.DoubleVar()
         self.int_label.set(int_label)
-        self.label_textevariable = tk.Label(window,
-                                            textvariable=self.int_label)
+        self.label_textevariable = tk.Label(window, textvariable=self.int_label)
 
     def label_grid(
         self, row, column, rowspan=1, columnspan=1, padx=(0, 0), pady=(0, 0)
@@ -30,8 +29,8 @@ class LabelTextVariable:
 class LabelText:
     # Class for the Label Tkinter
 
-    def __init__(self, window, text):
-        self.label_texte = tk.Label(window, text=text)
+    def __init__(self, window, text, image=""):
+        self.label_texte = tk.Label(window, text=text, image=image)
 
     def label_grid(
         self, row, column, rowspan=1, columnspan=1, padx=(0, 0), pady=(0, 0)
