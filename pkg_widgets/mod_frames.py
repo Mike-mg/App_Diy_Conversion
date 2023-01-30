@@ -12,6 +12,36 @@ class FramesWidgets:
         self.bg = "#f28de2"
         self.dict_base = {"base": 100}
 
+# On clic button 1 mouse ------------------------------------------------------
+
+    def clic_button_1_event(self, event):
+        # Reset values on click mouse 1
+
+        self.value_entry_quantity_total.set(0)
+        self.value_show_quantity_total.set(0)
+
+        self.value_entry_aroma.set(0)
+        self.value_show_aroma.set(0)
+
+        self.value_entry_base.set(0)
+        self.value_show_base.set(0)
+
+# function reset values -------------------------------------------------------
+
+    def reset_values(self):
+        # Reset values of main window
+
+        self.selected_percent_aroma.set(0)
+
+        self.value_entry_quantity_total.set(0)
+        self.value_show_quantity_total.set(0)
+
+        self.value_entry_aroma.set(0)
+        self.value_show_aroma.set(0)
+
+        self.value_entry_base.set(0)
+        self.value_show_base.set(0)
+
 # function command button by quantity total -----------------------------------
 
     def calcul_by_entry_quantity_total(self):
@@ -19,12 +49,19 @@ class FramesWidgets:
 
         try:
 
-            if self.value_entry_quantity_total.get() > 0:
+            if self.selected_percent_aroma.get() == 0:
+                messagebox.showwarning(
+                    title="Field invalid", message="Selected a percent aroma")
+
+                self.reset_values()
+
+            elif self.value_entry_quantity_total.get() > 0:
+                print(self.value_entry_quantity_total.get())
 
                 base = self.value_entry_quantity_total.get() \
                     * self.dict_base["base"] \
                     / (self.selected_percent_aroma.get()
-                       + self.dict_base["base"])
+                        + self.dict_base["base"])
 
                 base = round(base, 1)
                 aroma = base * self.selected_percent_aroma.get() \
@@ -38,11 +75,20 @@ class FramesWidgets:
                 self.value_show_aroma.set(aroma)
                 self.value_show_base.set(base)
 
-        except Exception:
+        except TypeError:
             messagebox.showerror(
                 title="Erreur de saisie",
-                message="Erreur de saisie\nTous les champs non utilisés \
-                doivent être à 0.\nLes champs vont être réinitialisés") # noqa
+                message="Input a number integer")
+
+            self.reset_values()
+
+        except tk.TclError:
+
+            messagebox.showerror(
+                title="Input error",
+                message="Input a number integer")
+
+            self.reset_values()
 
 # function command button by aroma --------------------------------------------
 
@@ -50,51 +96,82 @@ class FramesWidgets:
         # function of button command by aroma
 
         try:
-            if self.entry_aroma.get() > 0:
 
-                base = self.entry_aroma.get() * self.dict_base["base"] \
+            if self.selected_percent_aroma.get() == 0:
+                messagebox.showwarning(
+                    title="Field invalid", message="Selected a percent aroma")
+
+                self.reset_values()
+
+            elif self.value_entry_aroma.get() > 0:
+
+                base = self.value_entry_aroma.get() \
+                    * self.dict_base["base"] \
                     / self.selected_percent_aroma.get()
 
                 base = round(base, 1)
-
                 self.value_show_quantity_total.set(
-                    base + self.entry_aroma.get())
+                    base + self.value_entry_aroma.get())
 
                 self.value_show_base.set(base)
-                self.value_show_aroma.set(self.entry_aroma.get)
+                self.value_show_aroma.set(self.value_entry_aroma.get())
 
-        except Exception:
+        except TypeError:
+
             messagebox.showerror(
                 title="Erreur de saisie",
-                message="Erreur de saisie\nTous les champs non utilisés \
-                doivent être à 0.\nLes champs vont être réinitialisés") # noqa
+                message="Input a number integer")
+
+            self.reset_values()
+
+        except tk.TclError:
+
+            messagebox.showerror(
+                title="Input error",
+                message="Input a number integer")
+
+            self.reset_values()
 
 # function command button by base ---------------------------------------------
 
-    def calcul_by_base(self):
+    def calcul_by_entry_base(self):
         # function of button command by base
 
         try:
 
-            if self.entry_base.get() > 0:
+            if self.selected_percent_aroma.get() == 0:
+                messagebox.showwarning(
+                    title="Field invalid", message="Selected a percent aroma")
+
+                self.reset_values()
+
+            elif self.value_entry_base.get() > 0:
 
                 aroma = self.selected_percent_aroma.get() \
-                    * self.entry_base.get() \
+                    * self.value_entry_base.get() \
                     / self.dict_base["base"]
 
                 aroma = round(aroma, 1)
 
                 self.value_show_quantity_total.set(
-                    self.entry_base.get() + aroma)
+                    self.value_entry_base.get() + aroma)
 
                 self.value_show_aroma.set(aroma)
-                self.value_show_base.set(self.entry_base.get())
+                self.value_show_base.set(self.value_entry_base.get())
 
-        except Exception:
+        except TypeError:
             messagebox.showerror(
                 title="Erreur de saisie",
-                message="Erreur de saisie\nTous les champs non utilisés \
-                doivent être à 0.\nLes champs vont être réinitialisés") # noqa
+                message="Input a number integer")
+
+            self.reset_values()
+
+        except tk.TclError:
+            messagebox.showerror(
+                title="Input error",
+                message="Input a number integer")
+
+            self.reset_values()
 
 # Frame percent aroma selected ------------------------------------------------
 
@@ -108,21 +185,22 @@ class FramesWidgets:
             row=0, column=0, padx=(50, 0), pady=(50, 25))
 
         label_selected_dosage_aroma = tk.Label(
-            frame_selected_dosage, text="Selected dosage")
+            frame_selected_dosage, text="Selected percent aroma")
 
         label_selected_dosage_aroma.config(bg=self.bg)
 
         label_selected_dosage_aroma.grid(
-            row=0, column=0, padx=(0, 0), pady=(0, 0))
+            row=0, column=0, padx=(0, 0), pady=(15, 0))
 
         self.selected_percent_aroma = tk.Scale(
             frame_selected_dosage, digits=2, length=375, from_=0, to=20,
             orient="horizontal", bg=self.bg, troughcolor="white",
             font=("Arial", 14), fg="white")
 
-        self.selected_percent_aroma.grid(row=1, column=0)
+        self.selected_percent_aroma.grid(
+            row=1, column=0, padx=(25, 25), pady=(0, 25))
 
-# Frame quantity --------------------------------------------------------------
+# Frame quantity total --------------------------------------------------------
 
     def frame_quantity_total(self, window) -> None:
         # show frame quantity total
@@ -142,27 +220,27 @@ class FramesWidgets:
         label_quantity_total.grid(
             row=0, column=0, padx=(15, 15), pady=(15, 15))
 
-        self.value_show_quantity_total = tk.DoubleVar()
-        self.show_entry_quantity_total = tk.Label(
+        self.value_show_quantity_total = tk.StringVar()
+        self.show_quantity_total = tk.Label(
             frame_quantity_total,
             textvariable=self.value_show_quantity_total)
 
-        self.show_entry_quantity_total.config(
+        self.show_quantity_total.config(
             width=15, justify="center", padx=2, pady=2, bg="white",
             relief="ridge", bd=2)
 
-        self.show_entry_quantity_total.grid(
+        self.show_quantity_total.grid(
             row=1, column=0, padx=(0, 0), pady=(0, 15))
 
-        self.value_entry_quantity_total = tk.DoubleVar()
-        self.entry_entry_quantity_total = tk.Entry(
+        self.value_entry_quantity_total = tk.IntVar()
+        self.entry_quantity_total = tk.Entry(
             frame_quantity_total,
             textvariable=self.value_entry_quantity_total)
 
-        self.entry_entry_quantity_total.config(
+        self.entry_quantity_total.config(
             width=10, justify="center", bg="white", relief="ridge", bd=2)
 
-        self.entry_entry_quantity_total.grid(
+        self.entry_quantity_total.grid(
             row=0, column=1, padx=(0, 15), pady=(0, 0))
 
         button_entry_quantity_total = tk.Button(
@@ -170,6 +248,8 @@ class FramesWidgets:
             command=self.calcul_by_entry_quantity_total)
 
         button_entry_quantity_total.place(x=334, y=50)
+
+        self.entry_quantity_total.bind("<1>", self.clic_button_1_event)
 
 # Frame aroma -----------------------------------------------------------------
 
@@ -189,7 +269,7 @@ class FramesWidgets:
 
         label_aroma.grid(row=0, column=0, padx=(15, 15), pady=(15, 10))
 
-        self.value_show_aroma = tk.DoubleVar()
+        self.value_show_aroma = tk.StringVar()
         self.show_aroma = tk.Label(
             frame_aroma, textvariable=self.value_show_aroma)
 
@@ -199,17 +279,21 @@ class FramesWidgets:
 
         self.show_aroma.grid(row=1, column=0, padx=(0, 0), pady=(0, 15))
 
-        self.entry_value_aroma = tk.DoubleVar()
+        self.value_entry_aroma = tk.IntVar()
         self.entry_aroma = tk.Entry(
-            frame_aroma, textvariable=self.entry_value_aroma)
+            frame_aroma, textvariable=self.value_entry_aroma)
 
         self.entry_aroma.config(
             width=10, justify="center", bg="white", relief="ridge", bd=2)
 
         self.entry_aroma.grid(row=0, column=1, padx=(0, 15), pady=(0, 0))
 
-        button_aroma = tk.Button(frame_aroma, text="Valid")
+        button_aroma = tk.Button(
+            frame_aroma, text="Valid", command=self.calcul_by_entry_aroma)
+
         button_aroma.place(x=334, y=50)
+
+        self.entry_aroma.bind("<1>", self.clic_button_1_event)
 
 # Frame base ------------------------------------------------------------------
 
@@ -229,7 +313,7 @@ class FramesWidgets:
 
         base.grid(row=0, column=0, padx=(15, 15), pady=(15, 10))
 
-        self.value_show_base = tk.DoubleVar()
+        self.value_show_base = tk.StringVar()
         self.show_base = tk.Label(
             frame_base, textvariable=self.value_show_base)
 
@@ -239,13 +323,16 @@ class FramesWidgets:
 
         self.show_base.grid(row=1, column=0, padx=(0, 0), pady=(0, 15))
 
-        self.entry_value_base = tk.DoubleVar()
+        self.value_entry_base = tk.IntVar()
         self.entry_base = tk.Entry(
-            frame_base, textvariable=self.entry_value_base)
+            frame_base, textvariable=self.value_entry_base)
         self.entry_base.config(
             width=10, justify="center", bg="white", relief="ridge", bd=2)
 
         self.entry_base.grid(row=0, column=1, padx=(0, 15), pady=(0, 0))
 
-        button_base = tk.Button(frame_base, text="Valid")
+        button_base = tk.Button(
+            frame_base, text="Valid", command=self.calcul_by_entry_base)
         button_base.place(x=334, y=50)
+
+        self.entry_base.bind("<1>", self.clic_button_1_event)

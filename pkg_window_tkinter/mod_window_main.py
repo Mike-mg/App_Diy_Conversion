@@ -32,9 +32,9 @@ class MainWindowApp:
         # Configure the main window
 
         self.window.title("Diy - Vap")
-        self.window.geometry("525x575")
-        self.window.resizable(0, 0)
-        tk.Label(self.window, image=self.background).place(x=0, y=0)
+        self.window.geometry("522x575")
+        # self.window.resizable(0, 0)
+        tk.Label(self.window, image=self.background).place(x=1, y=0)
 
     def show_frame_percent_aroma_selected(self):
         # Show frame select aroma percent
