@@ -16,7 +16,7 @@ start_window.main_window.verify_sysytem_for_icon()
 start_window.main_window.config_window()
 start_window.main_window.image_background()
 
-start_window.main_window.frame_dosage()
+start_window.main_window.frame_percent_dosage_aroma()
 start_window.main_window.frame_quantity()
 start_window.main_window.frame_aroma()
 start_window.main_window.frame_base()

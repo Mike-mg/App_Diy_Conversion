@@ -40,10 +40,10 @@ class MainWindowApp:
 
         tk.Label(self.window, image=self.background).place(x=0, y=0)
 
-    def frame_dosage(self):
+    def frame_percent_dosage_aroma(self):
         # Show frame select dosage percent
 
-        self.widgets.frame_dosage(self.window)
+        self.widgets.frame_percent_dosage_aroma(self.window)
 
     def frame_quantity(self):
         # Show frame quantity
