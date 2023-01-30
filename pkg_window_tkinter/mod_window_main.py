@@ -16,7 +16,7 @@ class MainWindowApp:
         self.background = ImageTk.PhotoImage(
             Image.open("images/background.png"))
 
-        self.widgets = pkg_widgets.FramesWidgets(self.window)
+        self.widgets = pkg_widgets.FramesWidgets()
 
     def verify_sysytem_for_icon(self) -> None:
         # Displays the icon according to the system
@@ -35,26 +35,27 @@ class MainWindowApp:
         self.window.geometry("525x575")
         self.window.resizable(0, 0)
 
-    def image_background(self, window):
+    def image_background(self):
+        # Configure background image
 
-        tk.Label(window, image=self.background).place(x=0, y=0)
+        tk.Label(self.window, image=self.background).place(x=0, y=0)
 
     def frame_dosage(self):
-        # Show select dosage percent
+        # Show frame select dosage percent
 
-        self.widgets.frame_dosage()
+        self.widgets.frame_dosage(self.window)
 
     def frame_quantity(self):
-        # Show select dosage percent
+        # Show frame quantity
 
-        self.widgets.frame_quantity()
+        self.widgets.frame_quantity(self.window)
 
     def frame_aroma(self):
-        # Show select dosage percent
+        # Show frame aroma
 
-        self.widgets.frame_aroma()
+        self.widgets.frame_aroma(self.window)
 
     def frame_base(self):
-        # Show select dosage percent
+        # Show frame base
 
-        self.widgets.frame_base()
+        self.widgets.frame_base(self.window)

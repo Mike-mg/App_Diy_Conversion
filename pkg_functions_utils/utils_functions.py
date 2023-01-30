@@ -1,61 +1,67 @@
 # Function calcul of program
 
+import tkinter as tk
 from tkinter import messagebox as messagebox
 import pkg_widgets
 
 
-
-
-
-class results_calculs:
+class FunctionsCommandButton:
+    # Class for the command button
 
     def __init__(self) -> None:
-        self.functions_calculs = pkg_widgets.FramesWidgets()
+        self.widgets = pkg_widgets.FramesWidgets()
         self.dict_percent_aroma = {
-            "aroma": self.functions_calculs.percent_dosage.get()}, {
-            "base": 100}
+            "aroma": self.widgets.selected_percent_dosage}, {"base": 100}
 
-    # def reset_variable(self):
-    #     # Reset variable type entry and percent_arome if error
+        self.selected_percent_aroma = self.widgets.selected_percent_dosage
 
-    #     main.entry_aroma.int_entry.set(0)
-    #     main.entry_base.int_entry.set(0)
-    #     main.entry_quantity_desired.int_entry.set(0)
-    #     main.percent_aroma.set(0)
+        self.entry_quantity_desired = self.widgets.entry_quantity_desired
+        self.entry_aroma = self.widgets.entry_aroma
+        self.entry_base = self.widgets.entry_base
 
-    def calcul_by_quantity_desired(self):
+        self.show_quantity_desired = self.widgets.show_quantity_desired
+        self.show_aroma = self.widgets.show_aroma
+        self.show_base = self.widgets.show_base
+
+# Calcul with quantity desired ------------------------------------------------
+
+    def button_command_quantity_desired(self, window):
+
+        button_quantity = tk.Button(
+            window, text="Valid", command=self.calcul_by_quantity_desired)
+
+        button_quantity.place(x=334, y=50)
+
+    def calcul_by_quantity_desired(self, window):
+
+        self.button_command_quantity_desired(window)
 
         try:
 
-            if self.functions_calculs.entry_quantity_desired.get() > 0:
+            if self.entry_quantity_desired > 0:
 
-                base = (
-                    main.entry_quantity_desired.int_entry.get()
-                    * percent_dosage[1]["base"]
-                    / (main.percent_aroma.get() + percent_dosage[1]["base"])
-                )
+                base = self.entry_quantity_desired * self.dict_percent_aroma[
+                    1]["base"] / (
+                        self.selected_percent_aroma + self.dict_percent_aroma[
+                            1]["base"])
 
-                base = round(base, 2)
+                base = round(base, 1)
 
-                aroma = base * main.percent_aroma.get() / percent_dosage[1]["base"]
+                aroma = base \
+                    * self.selected_percent_aroma \
+                    / self.dict_percent_aroma[1]["base"]
 
                 aroma = round(aroma, 1)
 
-                main.show_quantity_desired.label_texte["text"] = str(
-                    main.entry_quantity_desired.int_entry.get()
-                )
-                main.show_label_aroma.label_texte["text"] = str(aroma)
-                main.show_label_base.label_texte["text"] = str(base)
-
-                main.entry_quantity_desired.int_entry.set(0)
+                self.show_quantity_desired["text"] = str(self.entry_quantity_desired)
+                self.show_aroma["text"] = str(self.entry_aroma)
+                self.show_base["text"] = str(self.entry_base)
 
         except Exception:
             messagebox.showerror(
                 title="Erreur de saisie",
-                message="Erreur de saisie\nTous les champs non utilisés doivent être à 0.\nLes champs vont être réinitialisés",
-            )  # noqa
-
-            self.reset_variable()
+                message="Erreur de saisie\nTous les champs non utilisés \
+                    doivent être à 0.\nLes champs vont être réinitialisés") # noqa
 
     # def calcul_by_aroma(self):
 
@@ -63,7 +69,7 @@ class results_calculs:
     #         if main.entry_aroma.int_entry.get() > 0:
 
     #             base = main.entry_aroma.int_entry.get(
-    #             ) * percent_dosage[1]["base"] / percent_dosage[0]["aroma"]
+    #             ) * self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.percent_dosage[1]["base"] / self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.percent_dosage[0]["aroma"]
 
     #             base = round(base, 2)
 
@@ -92,7 +98,7 @@ class results_calculs:
     #         if main.entry_base.int_entry.get() > 0:
 
     #             aroma = main.entry_base.int_entry.get(
-    #             ) * main.percent_aroma.get() / percent_dosage[1]["base"]
+    #             ) * self.functions_calculs.percent_dosage.get() / self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.self.functions_calculs.percent_dosage[1]["base"]
 
     #             aroma = round(aroma, 2)
 
