@@ -10,25 +10,25 @@ class FramesWidgets:
     def __init__(self) -> None:
 
         self.bg = "#f28de2"
-        self.dict_percent_dosage_aroma = {
-            "aroma": self.selected_percent_aroma.get()}, {"base": 100}
+        self.dict_base = {"base": 100}
 
-# Command by quantity total ---------------------------------------------------
+# function command button by quantity total -----------------------------------
 
     def calcul_by_entry_quantity_total(self):
+        # function of button command by quantity total
 
         try:
 
             if self.value_entry_quantity_total.get() > 0:
 
                 base = self.value_entry_quantity_total.get() \
-                    * self.dict_percent_dosage_aroma[1]["base"] \
-                    / (self.dict_percent_dosage_aroma[0]["aroma"]
-                       + self.dict_percent_dosage_aroma[1]["base"])
+                    * self.dict_base["base"] \
+                    / (self.selected_percent_aroma.get()
+                       + self.dict_base["base"])
 
                 base = round(base, 1)
-                aroma = base * self.selected_percent_aroma[0]["aroma"] \
-                    / self.dict_percent_dosage_aroma[1]["base"]
+                aroma = base * self.selected_percent_aroma.get() \
+                    / self.dict_base["base"]
 
                 aroma = round(aroma, 1)
 
@@ -44,16 +44,16 @@ class FramesWidgets:
                 message="Erreur de saisie\nTous les champs non utilisés \
                 doivent être à 0.\nLes champs vont être réinitialisés") # noqa
 
-# Command by aroma ------------------------------------------------------------
+# function command button by aroma --------------------------------------------
 
     def calcul_by_entry_aroma(self):
+        # function of button command by aroma
 
         try:
             if self.entry_aroma.get() > 0:
 
-                base = self.entry_aroma.get() \
-                    * self.dict_percent_dosage_aroma[1]["base"] \
-                    / self.dict_percent_dosage_aroma[0]["aroma"]
+                base = self.entry_aroma.get() * self.dict_base["base"] \
+                    / self.selected_percent_aroma.get()
 
                 base = round(base, 1)
 
@@ -69,17 +69,18 @@ class FramesWidgets:
                 message="Erreur de saisie\nTous les champs non utilisés \
                 doivent être à 0.\nLes champs vont être réinitialisés") # noqa
 
-# Command by base -------------------------------------------------------------
+# function command button by base ---------------------------------------------
 
     def calcul_by_base(self):
+        # function of button command by base
 
         try:
 
             if self.entry_base.get() > 0:
 
-                aroma = self.dict_percent_dosage_aroma[0]["aroma"] \
+                aroma = self.selected_percent_aroma.get() \
                     * self.entry_base.get() \
-                    / self.dict_percent_dosage_aroma[1]["base"]
+                    / self.dict_base["base"]
 
                 aroma = round(aroma, 1)
 
@@ -97,8 +98,8 @@ class FramesWidgets:
 
 # Frame percent aroma selected ------------------------------------------------
 
-    def frame_percent_dosage_aroma(self, window) -> None:
-        # Show frame percent dosage
+    def frame_percent_aroma_selected(self, window) -> None:
+        # Show frame percent aroma selected
 
         frame_selected_dosage = tk.Frame(
             window, borderwidth=2, relief="raised", bg=self.bg, border=3)
@@ -123,8 +124,8 @@ class FramesWidgets:
 
 # Frame quantity --------------------------------------------------------------
 
-    def frame_quantity(self, window) -> None:
-        # show frame quantity desired
+    def frame_quantity_total(self, window) -> None:
+        # show frame quantity total
 
         frame_quantity_total = tk.Frame(
             window, borderwidth=3, relief="raised", bg=self.bg)
@@ -213,7 +214,7 @@ class FramesWidgets:
 # Frame base ------------------------------------------------------------------
 
     def frame_base(self, window) -> None:
-        # show frame quantity base
+        # show frame base
 
         frame_base = tk.Frame(
             window, borderwidth=3, relief="raised",

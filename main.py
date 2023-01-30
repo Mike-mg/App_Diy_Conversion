@@ -14,11 +14,10 @@ start_window = Main()
 
 start_window.main_window.verify_sysytem_for_icon()
 start_window.main_window.config_window()
-start_window.main_window.image_background()
 
-start_window.main_window.frame_percent_dosage_aroma()
-start_window.main_window.frame_quantity()
-start_window.main_window.frame_aroma()
-start_window.main_window.frame_base()
+start_window.main_window.show_frame_percent_aroma_selected()
+start_window.main_window.show_show_frame_quantity_total()
+start_window.main_window.show_frame_aroma()
+start_window.main_window.show_frame_base()
 
 start_window.main_window.window.mainloop()

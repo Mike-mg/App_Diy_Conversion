@@ -5,8 +5,6 @@ name = "pypi"
 
 [packages]
 pillow = "*"
-auto-py-to-exe = "*"
-black = "*"
 
 [dev-packages]
 

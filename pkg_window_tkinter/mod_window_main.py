@@ -1,4 +1,4 @@
-# # Main window of program
+# Main window of program
 
 import tkinter as tk
 import sys
@@ -34,28 +34,24 @@ class MainWindowApp:
         self.window.title("Diy - Vap")
         self.window.geometry("525x575")
         self.window.resizable(0, 0)
-
-    def image_background(self):
-        # Configure background image
-
         tk.Label(self.window, image=self.background).place(x=0, y=0)
 
-    def frame_percent_dosage_aroma(self):
-        # Show frame select dosage percent
+    def show_frame_percent_aroma_selected(self):
+        # Show frame select aroma percent
 
-        self.widgets.frame_percent_dosage_aroma(self.window)
+        self.widgets.frame_percent_aroma_selected(self.window)
 
-    def frame_quantity(self):
+    def show_show_frame_quantity_total(self):
         # Show frame quantity
 
-        self.widgets.frame_quantity(self.window)
+        self.widgets.frame_quantity_total(self.window)
 
-    def frame_aroma(self):
+    def show_frame_aroma(self):
         # Show frame aroma
 
         self.widgets.frame_aroma(self.window)
 
-    def frame_base(self):
+    def show_frame_base(self):
         # Show frame base
 
         self.widgets.frame_base(self.window)
