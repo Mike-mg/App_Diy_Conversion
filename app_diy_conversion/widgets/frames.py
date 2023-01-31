@@ -1,11 +1,15 @@
-# Module Widgets frames
+"""
+Class for the creation of frames and their associated functions
+"""
 
 import tkinter as tk
 from tkinter import messagebox as messagebox
 
 
 class FramesWidgets:
-    # Class frames of program
+    """
+    Class for the creation of widgets and their associated functions
+    """
 
     def __init__(self) -> None:
 
@@ -15,7 +19,10 @@ class FramesWidgets:
 # On clic button 1 mouse ------------------------------------------------------
 
     def clic_button_1_event(self, event):
-        # Reset values on click mouse 1
+        """
+        With each click of the mouse with button 1 on a selected entry
+        All the fields are reset in order to make a new search for the dosage
+        """
 
         self.value_entry_quantity_total.set(0)
         self.value_show_quantity_total.set(0)
@@ -29,7 +36,9 @@ class FramesWidgets:
 # function reset values -------------------------------------------------------
 
     def reset_values(self):
-        # Reset values of main window
+        """
+        Method to reset all fields in the application to "0
+        """
 
         self.selected_percent_aroma.set(0)
 
@@ -45,7 +54,10 @@ class FramesWidgets:
 # function command button by quantity total -----------------------------------
 
     def calcul_by_entry_quantity_total(self):
-        # function of button command by quantity total
+        """
+        Method that allows to display the quantity of flavour and base
+        according to the total quantity desired
+        """
 
         try:
 
@@ -92,7 +104,10 @@ class FramesWidgets:
 # function command button by aroma --------------------------------------------
 
     def calcul_by_entry_aroma(self):
-        # function of button command by aroma
+        """
+        Method to display the total and basic quantity
+        according to the desired quantity of aroma
+        """
 
         try:
 
@@ -134,7 +149,10 @@ class FramesWidgets:
 # function command button by base ---------------------------------------------
 
     def calcul_by_entry_base(self):
-        # function of button command by base
+        """
+        Method of displaying the total quantity and the quantity of flavouring
+        according to the desired base quantity.
+        """
 
         try:
 
@@ -175,7 +193,10 @@ class FramesWidgets:
 # Frame percent aroma selected ------------------------------------------------
 
     def frame_percent_aroma_selected(self, window) -> None:
-        # Show frame percent aroma selected
+        """
+        Widget for displaying the selection of
+        the percentage of the desired flavor
+        """
 
         frame_selected_dosage = tk.Frame(
             window, borderwidth=2, relief="raised", bg=self.bg, border=3)
@@ -202,7 +223,9 @@ class FramesWidgets:
 # Frame quantity total --------------------------------------------------------
 
     def frame_quantity_total(self, window) -> None:
-        # show frame quantity total
+        """
+        Widget to display the selection of the desired total quantity
+        """
 
         frame_quantity_total = tk.Frame(
             window, borderwidth=3, relief="raised", bg=self.bg)
@@ -253,7 +276,9 @@ class FramesWidgets:
 # Frame aroma -----------------------------------------------------------------
 
     def frame_aroma(self, window) -> None:
-        # show frame quantity aroma
+        """
+        Widget for displaying the desired flavor selection
+        """
 
         frame_aroma = tk.Frame(
             window, borderwidth=3, relief="raised",
@@ -297,7 +322,9 @@ class FramesWidgets:
 # Frame base ------------------------------------------------------------------
 
     def frame_base(self, window) -> None:
-        # show frame base
+        """
+        Widget for displaying the desired base selection
+        """
 
         frame_base = tk.Frame(
             window, borderwidth=3, relief="raised",

@@ -1,13 +1,19 @@
-# Entry program
+"""
+Entry in App
+"""
 
 import window_tkinter
 
 
 class Main:
-    # Entry program
+    """
+    Class main for init the main window
+    """
 
     def __init__(self) -> None:
-        # Init main window
+        """
+        Init main window
+        """
 
         self.main_window = window_tkinter.MainWindowApp()
 

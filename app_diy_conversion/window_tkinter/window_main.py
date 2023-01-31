@@ -1,4 +1,6 @@
-# Main window of program
+"""
+Class of the initialization of the main window
+"""
 
 import tkinter as tk
 import sys
@@ -7,7 +9,9 @@ import widgets
 
 
 class MainWindowApp(tk.Tk):
-    # Main window
+    """
+    Init class main window Tkinter
+    """
 
     def __init__(self):
         super().__init__()
@@ -19,7 +23,9 @@ class MainWindowApp(tk.Tk):
         self.widgets = widgets.FramesWidgets()
 
     def verify_system_for_icon(self) -> None:
-        # Displays the icon according to the system
+        """
+        Displays the icon according to the system
+        """
 
         if sys.platform.startswith("linux"):
             icon = tk.PhotoImage(file="images/icone.gif")
@@ -29,33 +35,45 @@ class MainWindowApp(tk.Tk):
             self.iconbitmap("images/icone.ico")
 
     def config_window(self) -> None:
-        # Configure the main window
+        """
+        Configure the main window
+        """
 
         self.title("Diy - Vap")
         self.geometry("522x575")
         self.resizable(0, 0)
 
     def background_window(self) -> None:
-        # Background window
+        """
+        Background window
+        """
 
         tk.Label(self, image=self.background).place(x=1, y=0)
 
     def show_frame_percent_aroma_selected(self) -> None:
-        # Show frame select aroma percent
+        """
+        Show frame select aroma percent
+        """
 
         self.widgets.frame_percent_aroma_selected(self)
 
     def show_show_frame_quantity_total(self) -> None:
-        # Show frame quantity
+        """
+        Show frame quantity
+        """
 
         self.widgets.frame_quantity_total(self)
 
     def show_frame_aroma(self) -> None:
-        # Show frame aroma
+        """
+        Show frame aroma
+        """
 
         self.widgets.frame_aroma(self)
 
     def show_frame_base(self) -> None:
-        # Show frame base
+        """
+        Show frame base
+        """
 
         self.widgets.frame_base(self)
