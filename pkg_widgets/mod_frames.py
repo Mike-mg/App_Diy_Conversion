@@ -1,4 +1,4 @@
-# Widgets frames
+# Module Widgets frames
 
 import tkinter as tk
 from tkinter import messagebox as messagebox
