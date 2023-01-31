@@ -56,7 +56,6 @@ class FramesWidgets:
                 self.reset_values()
 
             elif self.value_entry_quantity_total.get() > 0:
-                print(self.value_entry_quantity_total.get())
 
                 base = self.value_entry_quantity_total.get() \
                     * self.dict_base["base"] \
