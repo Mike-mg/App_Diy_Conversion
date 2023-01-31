@@ -3,7 +3,7 @@
 import tkinter as tk
 import sys
 from PIL import Image, ImageTk
-import pkg_widgets
+import widgets
 
 
 class MainWindowApp(tk.Tk):
@@ -16,7 +16,7 @@ class MainWindowApp(tk.Tk):
         self.background = ImageTk.PhotoImage(
             Image.open("images/background.png"))
 
-        self.widgets = pkg_widgets.FramesWidgets()
+        self.widgets = widgets.FramesWidgets()
 
     def verify_system_for_icon(self) -> None:
         # Displays the icon according to the system

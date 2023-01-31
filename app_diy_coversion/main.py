@@ -1,13 +1,13 @@
 # Entry program
 
-import pkg_window_tkinter
+import window_tkinter
 
 
 class Main:
     # Entry program
 
     def __init__(self) -> None:
-        self.main_window = pkg_window_tkinter.MainWindowApp()
+        self.main_window = window_tkinter.MainWindowApp()
 
 
 start_window = Main()
