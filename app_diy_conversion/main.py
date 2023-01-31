@@ -7,6 +7,8 @@ class Main:
     # Entry program
 
     def __init__(self) -> None:
+        # Init main window
+
         self.main_window = window_tkinter.MainWindowApp()
 
 

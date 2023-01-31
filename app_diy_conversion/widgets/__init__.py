@@ -1,3 +1,3 @@
-# Import modules of pkg_widgets
+# Import modules of widgets
 
 from .frames import FramesWidgets # noqa
